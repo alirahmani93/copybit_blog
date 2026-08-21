@@ -23,7 +23,7 @@ import process from "node:process";
 const ROOT = process.cwd();
 const POSTS = path.join(ROOT, "content", "posts");
 
-const PILLARS = ["آموزش پایه", "تحلیل", "استراتژی", "بازار", "محصول", "راهنما"];
+const PILLARS = ["آموزش پایه", "مدیریت ریسک", "کپی‌تریدینگ", "بازارها", "تحلیل و ابزار"];
 const ART = ["bars", "line-up", "line-down", "cards", "mark"];
 
 /* ── argv ─────────────────────────────────────────────────────────────── */

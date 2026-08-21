@@ -41,14 +41,22 @@ export const site = {
     "معاملات اهرمی ریسک از دست دادن کل سرمایه را دارد. محتوای این وبلاگ توصیه سرمایه‌گذاری نیست.",
 } as const;
 
-/** Pillar categories. `slug` is the URL segment, `name` the display label. */
+/**
+ * Pillar categories — the blog's five editorial pillars.
+ *
+ * These are the content pillars from the editorial brief, not an invented
+ * taxonomy: the scheduled routine picks a pillar before it picks a keyword, and
+ * refuses to reuse the pillar of the last two posts, which is what stops the
+ * blog drifting into whatever coin is pumping this week. Changing a `name` here
+ * changes what counts as a valid first label, so keep it in step with the
+ * routine prompt.
+ */
 export const pillars = [
-  { slug: "amoozesh", name: "آموزش پایه", blurb: "مکانیزم فیوچرز، لوریج، فاندینگ و کپی معامله — نوشته‌شده برای کسی که تازه شروع کرده." },
-  { slug: "tahlil", name: "تحلیل", blurb: "تحلیل بنیادی و تکنیکال بازارها، کوین‌ها و کالاها — با عدد و منبع." },
-  { slug: "strategy", name: "استراتژی", blurb: "مدیریت ریسک، سایز پوزیشن و ساختن یک برنامه معاملاتی که بشود به آن پایبند ماند." },
-  { slug: "market", name: "بازار", blurb: "اتفاق‌های بازار، فاندینگ، نقدینگی و آنچه پشت حرکت قیمت‌ها می‌گذرد." },
-  { slug: "product", name: "محصول", blurb: "قابلیت‌های کپی‌بیت، کارمزدها و تغییرات محصول." },
-  { slug: "rahnama", name: "راهنما", blurb: "ابزارها و راهنماهای گام‌به‌گام برای کارهایی که هر روز انجام می‌دهید." },
+  { slug: "amoozesh", name: "آموزش پایه", blurb: "مکانیزم بازار، توضیح‌داده‌شده: فیوچرز، مارجین، فاندینگ ریت، انواع سفارش و تفاوت اسپات با فیوچرز." },
+  { slug: "risk", name: "مدیریت ریسک", blurb: "سایز پوزیشن، انضباط استاپ لاس، دراودان، اورترید و ریاضیات لیکوئید شدن — و روانشناسی پشت همه‌شان." },
+  { slug: "copy-trading", name: "کپی‌تریدینگ", blurb: "کپی‌تریدینگ چطور کار می‌کند، لید تریدر را چطور انتخاب کنیم، رکورد یک تریدر را چطور بخوانیم و کپی‌کننده دقیقاً چه چیزی را ریسک می‌کند." },
+  { slug: "markets", name: "بازارها", blurb: "ارز دیجیتال، سهام آمریکا، طلا و کالاها، شاخص‌ها — همبستگی‌شان با هم و ساعت‌های معاملاتی هر کدام." },
+  { slug: "analysis", name: "تحلیل و ابزار", blurb: "تحلیل تکنیکال و بنیادی، اندیکاتورها و محدودیت‌هایشان، بک‌تست، ژورنال معاملاتی و رصد پورتفوی." },
 ] as const;
 
 export type Pillar = (typeof pillars)[number];

@@ -18,7 +18,7 @@ pipeline, and it is designed for you to drive it directly.
 To scaffold the file instead of writing it by hand:
 
 ```bash
-npm run post:new -- --title "عنوان" --category "تحلیل" --labels "بیت‌کوین,فاندینگ"
+npm run post:new -- --title "عنوان" --category "بازارها" --labels "بیت‌کوین,فاندینگ"
 ```
 
 `--slug` is optional; without it the slug is the slugified title plus a short
@@ -34,7 +34,7 @@ date: 2026-08-21                        # required, YYYY-MM-DD
 lang: fa                                # fa (default) | en
 author: "تیم کپی‌بیت"
 labels:                                 # first label decides the category!
-  - "تحلیل"
+  - "بازارها"
   - "مس"
 art: bars                               # bars | line-up | line-down | cards | mark
 featured: false                         # at most one per language
@@ -58,7 +58,7 @@ that appears in the pillar whitelist**; everything after it stays a plain tag.
 The whitelist lives in `src/lib/site.ts` and drives the breadcrumb, the header
 nav and the home chips at once.
 
-Pillars: `آموزش پایه` · `تحلیل` · `استراتژی` · `بازار` · `محصول` · `راهنما`
+Pillars: `آموزش پایه` · `مدیریت ریسک` · `کپی‌تریدینگ` · `بازارها` · `تحلیل و ابزار`
 
 A post whose first label is not a pillar still publishes, but it gets no `/c/`
 page and no breadcrumb parent. `npm run post:check` warns about this.
@@ -129,3 +129,106 @@ npm run build        # production build — run before pushing a structural chan
 npm run post:check   # validate all frontmatter
 npm run post:list    # what is published, with flags
 ```
+
+## Product facts — the only claims you may make about CopyBit
+
+Everything else in a draft fails safely: a weak keyword gives a boring article, a
+stiff sentence gets rewritten. Claims about our own product do not fail safely. A
+model writing about a Hyperliquid builder with a copy-trading feed will produce a
+confident, specific, wrong fee split, because that number is plausible and varies
+across every competitor it has read. Published in Farsi on our own blog, that is a
+support burden at best.
+
+**If a claim about CopyBit is not in this block, do not make it.** No invented fee
+numbers, leverage limits, asset lists, launch dates, user counts or roadmap items.
+If an article would benefit from a fact that is not here, write around it and flag
+it in the PR description.
+
+| | |
+| --- | --- |
+| Platform | A Hyperliquid builder — a third-party trading interface built on the Hyperliquid protocol, with a social copy-trading feed |
+| Markets | Crypto, US stocks, commodities — spot alongside perpetual futures |
+| Minimum deposit | $20 |
+| Trading fee | 7 basis points (0.07%) per trade, charged by CopyBit **on top of** Hyperliquid's own protocol fees |
+| Fee split | Of that 7 bps: 50% to the signal provider, 40% to CopyBit, 10% to the referrer |
+| Copy trading | Traders share positions live; those copied earn from their copiers' fees |
+| Deposits | Built-in bridge; accepts USDT, USDC and each chain's native token, from BSC, Polygon, Arbitrum and Base |
+
+The 7 bps applies to every trade, copied or not. Never state or imply that trading
+on your own costs less, and never mention custom or negotiated rates for any
+trader. State the fee as additional to Hyperliquid's protocol fees rather than
+blending them into one number — traders check this, and being straight about it is
+worth more than looking cheap.
+
+**Not established — say nothing about these:** whether 7 bps applies to spot at the
+same rate as perps · which assets are spot versus perps only · withdrawal chains,
+timing or minimums · bridge fees or conversion rates · mobile app availability ·
+supported indices or forex · leverage limits · user counts, volumes, launch dates,
+roadmap.
+
+## Editorial rules
+
+**Audience.** Persian-speaking retail traders, beginner to intermediate. Crypto
+spot and perps, US stocks, gold and commodities, indices. Self-taught,
+price-sensitive, sceptical of hype.
+
+**Tone.** Knowledgeable peer, not a guru. Direct, practical, honest about risk.
+Never hype, never "financial freedom" language, never urgency.
+
+### Financial content — non-negotiable
+
+- **No price predictions.** Never «بیت کوین به X می‌رسد» or any target price.
+- **No buy, sell or entry recommendations.** Explain the mechanism; the reader decides.
+- **No guaranteed or implied returns.** Never suggest copy trading is passive income or low risk.
+- On copy trading, state plainly that copiers can lose money, that past performance
+  does not predict future results, and that a lead trader's incentives are not
+  identical to a copier's.
+- Where leverage, liquidation or margin come up, show the **downside** math, not just the upside.
+- **Nothing about legal status, regulation, tax treatment or availability** of any
+  market or platform for Iranian users. We do not have reliable current information
+  and a wrong claim here is costly.
+- Any price, statistic or market datum must come from a source checked during that
+  run, with the date stated. If you cannot verify it, leave it out.
+
+### Persian writing
+
+Natural, human Farsi — never translation-flavoured. Persian `ی` and `ک`, never
+Arabic `ي` or `ك`. Correct نیم‌فاصله: `می‌شود`, `پوزیشن‌ها`, `نمی‌توان` — a full
+space there is the single most common tell of machine-written Persian.
+
+Banned clichés: `در دنیای امروز` · `بدون شک` · `شایان ذکر است` · `لازم به ذکر است`
+
+**Use the loanwords traders actually type into Google**, not academic Persian.
+Introduce the formal term once in parentheses where it genuinely aids
+understanding, then use the common term throughout.
+
+| Use | Not |
+| --- | --- |
+| لوریج | اهرم مالی |
+| استاپ لاس | دستور توقف زیان |
+| پوزیشن | موقعیت معاملاتی |
+| لیکوئید شدن | — |
+| مارجین · فاندینگ ریت | — |
+| اسپات · فیوچرز · پرپچوال | — |
+| کندل · تایم فریم | — |
+| ولت / کیف پول | — |
+
+Brand name is **کپی‌بیت** (not کوپی‌بیت).
+
+### SEO and GEO
+
+- Title ≤ 60 characters, containing the primary keyword.
+- Primary keyword in the title, the first 100 words, and at least one `##`.
+- At least three `##` sections, written as **real user questions**.
+- 2–4 internal links to live posts with descriptive Persian anchor text — never «اینجا کلیک کنید».
+- At least one comparison or data table.
+- The opening `> ` blockquote is a 40–55 word direct answer that **stands entirely
+  alone** and could be quoted with no surrounding context. Read it in isolation: if
+  it needs the article around it, nothing will cite it.
+- A `## نکات کلیدی` list of 3–5 one-sentence takeaways near the top.
+- Be specific with entities, numbers and dates — «در سال ۱۴۰۴», not «اخیراً».
+- Close with 4–6 `faq:` entries in frontmatter, each answer 40–80 words.
+
+Mention CopyBit only where it is genuinely relevant, in one or two sentences drawn
+strictly from the product facts above. **A useful article that never mentions us
+beats a thin one that does.**
