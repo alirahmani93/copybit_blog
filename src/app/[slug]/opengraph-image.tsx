@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import fs from "node:fs";
 import path from "node:path";
-import { postBySlug, pageBySlug } from "@/lib/posts";
+import { allPosts, pageSlugs, postBySlug, pageBySlug } from "@/lib/posts";
 import { site } from "@/lib/site";
 import { formatDate } from "@/lib/dates";
 import { visualRtl, wrapVisualRtl } from "@/lib/rtl";
@@ -9,6 +9,18 @@ import { visualRtl, wrapVisualRtl } from "@/lib/rtl";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = site.title;
+
+/**
+ * Prerender one banner per post at build time rather than rendering on demand.
+ * Cheaper to serve, and it means the banner is produced where the content
+ * files definitely exist instead of inside a serverless function.
+ */
+export function generateStaticParams() {
+  return [
+    ...allPosts().map((p) => ({ slug: p.slug })),
+    ...pageSlugs().map((slug) => ({ slug })),
+  ];
+}
 
 const fontDir = path.join(process.cwd(), "src", "app", "_fonts");
 const bold = fs.readFileSync(path.join(fontDir, "Vazirmatn-Bold.ttf"));

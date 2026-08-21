@@ -3,12 +3,14 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
-  // The OG image renderer reads Vazirmatn from disk at request time. Next's
-  // file tracing follows imports, not runtime path strings, so without this the
-  // font is missing from the deployed bundle and every banner 500s — while
-  // working perfectly in a local build, where the whole repo is on disk.
+  // Anything read from disk at request time has to be force-included. Next's
+  // file tracing follows imports, not runtime path strings, and both of these
+  // are read by path: the OG renderer loads Vazirmatn, and lib/posts reads the
+  // markdown. Locally the whole repo is on disk so both work and the gap is
+  // invisible; in a serverless bundle the font 500s the route and the missing
+  // markdown silently renders every banner as the generic fallback.
   outputFileTracingIncludes: {
-    "/**": ["./src/app/_fonts/**"],
+    "/**": ["./src/app/_fonts/**", "./content/**"],
   },
 };
 
