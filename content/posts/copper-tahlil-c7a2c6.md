@@ -8,7 +8,7 @@ labels:
   - "بازارها"
   - "مس"
   - "کالا"
-  - "بازار"
+  - "کسری عرضه"
 art: line-up
 featured: false
 cta:

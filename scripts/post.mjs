@@ -256,6 +256,11 @@ function cmdCheck() {
         );
       }
     }
+    const labelList = [...raw.matchAll(/^\s+-\s*"?(.+?)"?\s*$/gm)].map((m) => m[1]);
+    const dupes = labelList.filter((l, i) => labelList.indexOf(l) !== i);
+    if (dupes.length > 0) {
+      console.warn(`! ${where}: label repeated — ${[...new Set(dupes)].join(", ")}`);
+    }
     if (seen.has(slug)) {
       console.error(`✗ duplicate slug "${slug}"`);
       problems++;
