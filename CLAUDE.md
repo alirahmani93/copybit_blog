@@ -80,6 +80,32 @@ add inline styles or wrapper divs.
 Persian digits belong in Persian sentences (`۱۰٬۰۰۰`), Latin digits in Latin
 runs. Do not force Persian digits into Inter — the CSS already handles this.
 
+## Banners and images
+
+**You do not need to make an image for a post.** Every post gets a 1200×630
+social share banner generated at build time from its own frontmatter — brand
+mark, pillar badge, title, date — by `src/app/[slug]/opengraph-image.tsx`. It is
+what Telegram, X and Google show when the link is shared. Nothing to draw,
+nothing to upload, and it stays correct if you edit the title later.
+
+Each post also gets in-page cover art chosen by the `art:` field:
+
+| `art:` | Figure | Fits |
+| --- | --- | --- |
+| `bars` | Rising bar chart on a grid | Fees, costs, comparisons |
+| `line-up` | Green upward line | Growth, bullish analysis |
+| `line-down` | Red downward line | Drawdown, liquidation, risk |
+| `cards` | Two outlined panels | Comparisons, side-by-side concepts |
+| `mark` | The CopyBit mark | Product and tool pieces |
+
+Pick the one that matches the argument; omit `art:` and a stable one is derived
+from the slug. Supply `cover: /images/foo.jpg` only if you have a real image
+worth showing — it replaces both the in-page art and the generated banner.
+
+**Never pre-reverse Persian text anywhere in the app.** `src/lib/rtl.ts` exists
+solely because Satori, the OG image renderer, does no bidi reordering; browsers
+do. Using it in HTML would render text backwards.
+
 ## Editing and deleting
 
 - **Edit** — change the file. Bump `updated: YYYY-MM-DD` if the change is

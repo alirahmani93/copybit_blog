@@ -63,7 +63,11 @@ export async function generateMetadata({
         modifiedTime: post.updated ? isoDate(post.updated) : undefined,
         authors: [post.author],
         tags: post.labels,
-        images: post.cover ? [post.cover] : undefined,
+        // Deliberately no `images` key unless the post ships its own cover:
+        // defining it at all — even as undefined — suppresses the generated
+        // opengraph-image, and that banner is what every post without a cover
+        // relies on for its social preview.
+        ...(post.cover ? { images: [post.cover] } : {}),
         locale: post.lang === "en" ? "en_US" : site.locale,
       },
     };
