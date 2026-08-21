@@ -32,7 +32,7 @@ title: "عنوان پست"                     # required
 description: "یک تا دو جمله."           # required in practice — cards, search, OG
 date: 2026-08-21                        # required, YYYY-MM-DD
 lang: fa                                # fa (default) | en
-author: "تیم کوپی‌بیت"
+author: "تیم کپی‌بیت"
 labels:                                 # first label decides the category!
   - "تحلیل"
   - "مس"

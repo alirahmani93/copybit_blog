@@ -26,17 +26,17 @@ export const site = {
   name: "CopyBit",
   kicker: "وبلاگ",
   kickerEn: "Blog",
-  title: "وبلاگ کوپی‌بیت",
+  title: "وبلاگ کپی‌بیت",
   description:
     "معاملات فیوچرز و اسپات روی هایپرلیکوئید، به زبان خودتان. تحلیل، آموزش و راهنمای کاربردی.",
   descriptionEn:
     "Perps and spot on Hyperliquid, explained. Analysis, education and practical guides.",
   url: resolveUrl(),
   appUrl: "https://copybit.org/fa",
-  ctaLabel: "ورود به کوپی‌بیت",
+  ctaLabel: "ورود به کپی‌بیت",
   ctaLabelEn: "Open App",
   locale: "fa_IR",
-  author: "تیم کوپی‌بیت",
+  author: "تیم کپی‌بیت",
   disclaimer:
     "معاملات اهرمی ریسک از دست دادن کل سرمایه را دارد. محتوای این وبلاگ توصیه سرمایه‌گذاری نیست.",
 } as const;
@@ -47,7 +47,7 @@ export const pillars = [
   { slug: "tahlil", name: "تحلیل", blurb: "تحلیل بنیادی و تکنیکال بازارها، کوین‌ها و کالاها — با عدد و منبع." },
   { slug: "strategy", name: "استراتژی", blurb: "مدیریت ریسک، سایز پوزیشن و ساختن یک برنامه معاملاتی که بشود به آن پایبند ماند." },
   { slug: "market", name: "بازار", blurb: "اتفاق‌های بازار، فاندینگ، نقدینگی و آنچه پشت حرکت قیمت‌ها می‌گذرد." },
-  { slug: "product", name: "محصول", blurb: "قابلیت‌های کوپی‌بیت، کارمزدها و تغییرات محصول." },
+  { slug: "product", name: "محصول", blurb: "قابلیت‌های کپی‌بیت، کارمزدها و تغییرات محصول." },
   { slug: "rahnama", name: "راهنما", blurb: "ابزارها و راهنماهای گام‌به‌گام برای کارهایی که هر روز انجام می‌دهید." },
 ] as const;
 

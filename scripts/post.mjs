@@ -142,7 +142,7 @@ function cmdNew(flags) {
     `description: ${yamlString(description)}`,
     `date: ${date}`,
     `lang: ${lang}`,
-    `author: ${yamlString(flags.author && flags.author !== true ? flags.author : "تیم کوپی‌بیت")}`,
+    `author: ${yamlString(flags.author && flags.author !== true ? flags.author : "تیم کپی‌بیت")}`,
     "labels:",
     ...labels.map((l) => `  - ${yamlString(l)}`),
     `art: ${art}`,
