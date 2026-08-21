@@ -6,6 +6,19 @@
  * new pillar means editing one array.
  */
 
+/**
+ * Canonical origin. An explicit NEXT_PUBLIC_SITE_URL wins; otherwise Vercel's
+ * own production URL is used, so canonicals, the sitemap and JSON-LD point at a
+ * host that actually resolves before a custom domain is attached.
+ */
+function resolveUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+  if (explicit) return explicit.replace(/\/$/, "");
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  if (vercel) return `https://${vercel.replace(/\/$/, "")}`;
+  return "http://localhost:3000";
+}
+
 export const site = {
   name: "CopyBit",
   kicker: "وبلاگ",
@@ -15,7 +28,7 @@ export const site = {
     "معاملات فیوچرز و اسپات روی هایپرلیکوئید، به زبان خودتان. تحلیل، آموزش و راهنمای کاربردی.",
   descriptionEn:
     "Perps and spot on Hyperliquid, explained. Analysis, education and practical guides.",
-  url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://blog.copybit.org",
+  url: resolveUrl(),
   appUrl: "https://copybit.org/fa",
   ctaLabel: "ورود به کوپی‌بیت",
   ctaLabelEn: "Open App",

@@ -46,7 +46,9 @@ export async function generateMetadata({
 
   if (post) {
     return {
-      title: post.title,
+      // An English post inside a Persian-titled site must not inherit the
+      // Persian suffix from the root template.
+      title: post.lang === "en" ? { absolute: `${post.title} — ${site.name} Blog` } : post.title,
       description: post.description,
       alternates: { canonical: `/${post.slug}` },
       robots: post.unlisted

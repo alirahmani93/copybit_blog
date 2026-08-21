@@ -9,7 +9,7 @@ import { featuredPost, listedPosts } from "@/lib/posts";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `${site.name} Blog`,
+  title: { absolute: `${site.name} Blog` },
   description: site.descriptionEn,
   alternates: { canonical: "/en", languages: { fa: "/", en: "/en" } },
   openGraph: { type: "website", title: `${site.name} Blog`, description: site.descriptionEn, url: `${site.url}/en`, locale: "en_US" },
