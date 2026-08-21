@@ -1113,6 +1113,33 @@ svg {
   color: var(--prose);
 }
 
+/* Justified running prose.
+ *
+ * `text-align: justify` alone opens ugly rivers of whitespace in Farsi, where
+ * words are long and no browser has hyphenation rules to fall back on. Pair it
+ * with `inter-word` so the spacing is distributed between words rather than
+ * stretched arbitrarily, and allow break-word so a long Latin token — a URL, an
+ * exchange ticker — cannot force one enormous gap.
+ *
+ * Running prose only. Headings, the byline, table cells, card decks and
+ * captions stay start-aligned: justifying short or narrow text is what makes a
+ * page look broken. */
+.prose p,
+.prose li,
+.faq__a {
+  text-align: justify;
+  text-justify: inter-word;
+  overflow-wrap: break-word;
+}
+
+/* The answer panel is lifted verbatim by AI search and read as a standalone
+ * block, so it keeps even spacing rather than justified gaps. */
+.prose blockquote > *,
+.prose figcaption,
+.prose .disclaimer {
+  text-align: start;
+}
+
 .prose strong {
   font-weight: 700;
   color: var(--text);
