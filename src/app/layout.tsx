@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
+  verification: {
+    google: "nz5CfYxnOW8m6krqx5spdkzUQg-LRWtvJj-cYeh_-2A",
+  },
 };
 
 export const viewport: Viewport = {
