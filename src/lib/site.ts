@@ -7,16 +7,19 @@
  */
 
 /**
- * Canonical origin. An explicit NEXT_PUBLIC_SITE_URL wins; otherwise Vercel's
- * own production URL is used, so canonicals, the sitemap and JSON-LD point at a
- * host that actually resolves before a custom domain is attached.
+ * Canonical origin.
+ *
+ * blog.copybit.org is the production domain, so it is the default rather than
+ * something that has to be wired up through an env var — the project's
+ * .vercel.app hostname serves the same content, and a canonical pointing at it
+ * would hand Google the wrong URL to index. NEXT_PUBLIC_SITE_URL still wins,
+ * for previews or if the domain ever changes.
  */
 function resolveUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return explicit.replace(/\/$/, "");
-  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  if (vercel) return `https://${vercel.replace(/\/$/, "")}`;
-  return "http://localhost:3000";
+  if (process.env.NODE_ENV !== "production") return "http://localhost:3000";
+  return "https://blog.copybit.org";
 }
 
 export const site = {

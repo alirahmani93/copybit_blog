@@ -39,9 +39,15 @@ rules in full — it is written for both people and agents.
 
 ## Configuration
 
-`NEXT_PUBLIC_SITE_URL` — the canonical origin, used for canonical URLs,
-`sitemap.xml`, the RSS feed and JSON-LD. Set it in the Vercel project settings
-(e.g. `https://blog.copybit.org`). Defaults to `https://blog.copybit.org`.
+All optional — set them in the Vercel project settings. `NEXT_PUBLIC_*` values
+are inlined at build time, so changing one needs a redeploy to take effect.
+
+| Variable | |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin for canonical tags, `sitemap.xml`, RSS and JSON-LD. Defaults to `https://blog.copybit.org` in production. |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Umami website id. Analytics load only when this is set. |
+| `NEXT_PUBLIC_UMAMI_SRC` | Umami script URL. Defaults to `https://cloud.umami.is/script.js`; set it to `https://<your-host>/script.js` when self-hosting. |
+| `NEXT_PUBLIC_UMAMI_DOMAINS` | Hosts that report data. Defaults to `blog.copybit.org`, which keeps preview deployments out of your stats. |
 
 Site identity and the category whitelist live in `src/lib/site.ts`; design
 tokens in `src/app/globals.css`.
