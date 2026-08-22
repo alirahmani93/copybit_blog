@@ -1,0 +1,56 @@
+name: Announce new posts to Telegram
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/posts/**.md"]
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: "Slugs to announce, space separated"
+        required: true
+
+concurrency:
+  group: telegram-announce
+  cancel-in-progress: false
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Collect slugs
+        id: collect
+        env:
+          MANUAL_SLUGS: ${{ inputs.slugs }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          if [ -n "${MANUAL_SLUGS:-}" ]; then
+            slugs="$MANUAL_SLUGS"
+          else
+            base="$BEFORE"
+            if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+              base="${GITHUB_SHA}^"
+            fi
+            slugs=$(git diff --name-only --diff-filter=A "$base" "$GITHUB_SHA" -- 'content/posts/*.md' \
+              | sed 's|content/posts/||; s|\.md$||' | tr '\n' ' ')
+          fi
+          echo "slugs=$(echo $slugs)" >> "$GITHUB_OUTPUT"
+
+      - name: Announce
+        if: steps.collect.outputs.slugs != ''
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://blog.copybit.org' }}
+          SLUGS: ${{ steps.collect.outputs.slugs }}
+        run: |
+          node scripts/telegram.mjs $SLUGS

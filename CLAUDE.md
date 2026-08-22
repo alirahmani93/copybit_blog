@@ -13,7 +13,8 @@ pipeline, and it is designed for you to drive it directly.
 
 1. Write `content/posts/<slug>.md` with the frontmatter below.
 2. `npm run post:check` — catches malformed frontmatter and non-pillar categories.
-3. Commit and push to `main`. Vercel builds and the post is live at `/<slug>`.
+3. Commit and push to `main`. Vercel builds and the post is live at `/<slug>`,
+   and `.github/workflows/telegram.yml` announces it in the Telegram channel.
 
 To scaffold the file instead of writing it by hand:
 
@@ -154,7 +155,26 @@ npm run dev          # http://localhost:3000
 npm run build        # production build — run before pushing a structural change
 npm run post:check   # validate all frontmatter
 npm run post:list    # what is published, with flags
+npm run post:tg -- <slug> [--dry-run] [--force] [--no-wait]   # announce to Telegram
 ```
+
+## Telegram announcements
+
+Every push to `main` that **adds** a `content/posts/*.md` file triggers
+`.github/workflows/telegram.yml`, which runs `scripts/telegram.mjs` for each new
+slug: it polls `/<slug>` until the deploy is live, reads the page's own
+`og:image` — the same generated 1200×630 banner — and sends it as a `sendPhoto`
+with a caption of title, description, label hashtags and the link.
+
+Editing a post announces nothing. Drafts and unlisted posts are skipped.
+
+Run it by hand for a backfill or a re-send: `npm run post:tg -- <slug>`, with
+`--dry-run` to print the caption without sending. There is no sent-ledger, so a
+manual run on an already-announced post posts it twice.
+
+Secrets live in the GitHub repo, not here: `TELEGRAM_BOT_TOKEN` and
+`TELEGRAM_CHAT_ID` (`@channelusername` or the numeric `-100…` id) as Actions
+secrets. The bot must be an admin of the channel.
 
 ## Product facts — the only claims you may make about CopyBit
 

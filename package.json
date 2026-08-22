@@ -10,7 +10,8 @@
     "post:new": "node scripts/post.mjs new",
     "post:list": "node scripts/post.mjs list",
     "post:rm": "node scripts/post.mjs rm",
-    "post:check": "node scripts/post.mjs check"
+    "post:check": "node scripts/post.mjs check",
+    "post:tg": "node scripts/telegram.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
