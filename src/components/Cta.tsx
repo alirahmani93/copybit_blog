@@ -23,6 +23,8 @@ export default function Cta({
         href={href}
         target={href.startsWith("http") ? "_blank" : undefined}
         rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+        data-umami-event="cta-post"
+        data-umami-event-cta={title}
       >
         <span>{label ?? "شروع کنید"}</span>
         <ArrowIcon size={15} className="arrow-rtl" />

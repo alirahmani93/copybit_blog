@@ -65,6 +65,7 @@ export default function SiteHeader({ lang = "fa" }: { lang?: "fa" | "en" }) {
             className="btn btn--cta"
             target="_blank"
             rel="noopener noreferrer"
+            data-umami-event="cta-header"
           >
             <span>{en ? site.ctaLabelEn : site.ctaLabel}</span>
             <ArrowIcon className="arrow-rtl" />
@@ -95,7 +96,12 @@ export default function SiteHeader({ lang = "fa" }: { lang?: "fa" | "en" }) {
           </Link>
         ))}
         <Link href="/search">{en ? "Search" : "جستجو"}</Link>
-        <a href={site.appUrl} target="_blank" rel="noopener noreferrer">
+        <a
+          href={site.appUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-umami-event="cta-mobile-nav"
+        >
           {en ? site.ctaLabelEn : site.ctaLabel}
         </a>
       </nav>

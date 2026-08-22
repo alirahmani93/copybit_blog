@@ -47,10 +47,20 @@ export default function SiteFooter({ lang = "fa" }: { lang?: "fa" | "en" }) {
 
         <div className="site-footer__col">
           <h2>{en ? "Product" : "محصول"}</h2>
-          <a href={site.appUrl} target="_blank" rel="noopener noreferrer">
+          <a
+            href={site.appUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-umami-event="cta-footer-trade"
+          >
             {en ? "Trade" : "معامله"}
           </a>
-          <a href={site.appUrl} target="_blank" rel="noopener noreferrer">
+          <a
+            href={site.appUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-umami-event="cta-footer-copy"
+          >
             {en ? "Copy trading" : "کپی معامله"}
           </a>
           <Link href="/c/product">{en ? "Fees" : "کارمزدها"}</Link>
