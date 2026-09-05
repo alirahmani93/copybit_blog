@@ -31,7 +31,7 @@ export default function HomePage() {
           {rest.length > 0 ? (
             <div className="grid-3">
               {rest.map((post) => (
-                <PostCard key={post.slug} post={post} />
+                <PostCard key={post.slug} post={post} place="home" />
               ))}
             </div>
           ) : (
@@ -48,7 +48,7 @@ export default function HomePage() {
 
         {rest.length >= 9 && (
           <div className="wrap" style={{ padding: "20px 24px 48px", display: "flex", justifyContent: "center" }}>
-            <Link href="/search" className="btn btn--ghost">
+            <Link href="/search" className="btn btn--ghost" data-umami-event="older-posts">
               مطالب قدیمی‌تر
             </Link>
           </div>

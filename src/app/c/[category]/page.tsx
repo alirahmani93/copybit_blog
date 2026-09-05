@@ -36,6 +36,7 @@ export async function generateMetadata({
       description: pillar.blurb,
       url: `${site.url}/c/${pillar.slug}`,
     },
+    other: { "x-lang": "fa", "x-pillar": pillar.name },
   };
 }
 
@@ -82,7 +83,7 @@ export default async function CategoryPage({
           {posts.length > 0 ? (
             <div className="rows">
               {posts.map((post) => (
-                <PostRow key={post.slug} post={post} />
+                <PostRow key={post.slug} post={post} place="category" />
               ))}
             </div>
           ) : (

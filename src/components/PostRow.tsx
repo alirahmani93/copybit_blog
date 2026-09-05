@@ -3,11 +3,19 @@ import CoverArt from "./CoverArt";
 import { formatDate, readingTimeShort } from "@/lib/dates";
 import type { Post } from "@/lib/posts";
 
-export default function PostRow({ post }: { post: Post }) {
+export default function PostRow({ post, place = "rows" }: { post: Post; place?: string }) {
   const en = post.lang === "en";
   return (
     <article className="post-row" dir={en ? "ltr" : undefined}>
-      <Link href={`/${post.slug}`} className="post-row__art" tabIndex={-1} aria-hidden>
+      <Link
+        href={`/${post.slug}`}
+        className="post-row__art"
+        tabIndex={-1}
+        aria-hidden
+        data-umami-event="post-click"
+        data-umami-event-slug={post.slug}
+        data-umami-event-place={place}
+      >
         {post.cover ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -23,7 +31,12 @@ export default function PostRow({ post }: { post: Post }) {
       <div className="post-row__body">
         <div className="meta-row">
           {post.pillar && (
-            <Link href={post.pillar.href} className="badge badge--sm">
+            <Link
+              href={post.pillar.href}
+              className="badge badge--sm"
+              data-umami-event="badge-click"
+              data-umami-event-pillar={post.pillar.name}
+            >
               {post.pillar.name}
             </Link>
           )}
@@ -32,7 +45,14 @@ export default function PostRow({ post }: { post: Post }) {
           </span>
         </div>
         <h3 className="post-row__title">
-          <Link href={`/${post.slug}`}>{post.title}</Link>
+          <Link
+            href={`/${post.slug}`}
+            data-umami-event="post-click"
+            data-umami-event-slug={post.slug}
+            data-umami-event-place={place}
+          >
+            {post.title}
+          </Link>
         </h3>
         <p className="post-row__dek">{post.description}</p>
       </div>

@@ -3,11 +3,19 @@ import CoverArt from "./CoverArt";
 import { formatDate, readingTimeShort } from "@/lib/dates";
 import type { Post } from "@/lib/posts";
 
-export default function PostCard({ post }: { post: Post }) {
+export default function PostCard({ post, place = "grid" }: { post: Post; place?: string }) {
   const en = post.lang === "en";
   return (
     <article className="post-card" dir={en ? "ltr" : undefined}>
-      <Link href={`/${post.slug}`} className="post-card__art" tabIndex={-1} aria-hidden>
+      <Link
+        href={`/${post.slug}`}
+        className="post-card__art"
+        tabIndex={-1}
+        aria-hidden
+        data-umami-event="post-click"
+        data-umami-event-slug={post.slug}
+        data-umami-event-place={place}
+      >
         {post.cover ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -22,12 +30,24 @@ export default function PostCard({ post }: { post: Post }) {
       </Link>
       <div className="post-card__body">
         {post.pillar && (
-          <Link href={post.pillar.href} className="badge badge--sm">
+          <Link
+            href={post.pillar.href}
+            className="badge badge--sm"
+            data-umami-event="badge-click"
+            data-umami-event-pillar={post.pillar.name}
+          >
             {post.pillar.name}
           </Link>
         )}
         <h3 className="post-card__title" style={en ? { lineHeight: 1.35 } : undefined}>
-          <Link href={`/${post.slug}`}>{post.title}</Link>
+          <Link
+            href={`/${post.slug}`}
+            data-umami-event="post-click"
+            data-umami-event-slug={post.slug}
+            data-umami-event-place={place}
+          >
+            {post.title}
+          </Link>
         </h3>
         <p className="post-card__dek" style={en ? { lineHeight: 1.55 } : undefined}>
           {post.description}

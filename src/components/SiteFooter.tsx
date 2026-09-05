@@ -39,7 +39,13 @@ export default function SiteFooter({ lang = "fa" }: { lang?: "fa" | "en" }) {
         <div className="site-footer__col">
           <h2>{en ? "Blog" : "وبلاگ"}</h2>
           {pillars.slice(0, 3).map((p) => (
-            <Link key={p.slug} href={`/c/${p.slug}`}>
+            <Link
+              key={p.slug}
+              href={`/c/${p.slug}`}
+              data-umami-event="nav-pillar"
+              data-umami-event-pillar={p.slug}
+              data-umami-event-placement="footer"
+            >
               {p.name}
             </Link>
           ))}
@@ -52,6 +58,8 @@ export default function SiteFooter({ lang = "fa" }: { lang?: "fa" | "en" }) {
             target="_blank"
             rel="noopener noreferrer"
             data-umami-event="cta-footer-trade"
+            data-umami-event-placement="footer"
+            data-umami-event-lang={lang}
           >
             {en ? "Trade" : "معامله"}
           </a>
@@ -60,19 +68,25 @@ export default function SiteFooter({ lang = "fa" }: { lang?: "fa" | "en" }) {
             target="_blank"
             rel="noopener noreferrer"
             data-umami-event="cta-footer-copy"
+            data-umami-event-placement="footer"
+            data-umami-event-lang={lang}
           >
             {en ? "Copy trading" : "کپی معامله"}
           </a>
-          <Link href="/c/product">{en ? "Fees" : "کارمزدها"}</Link>
+          <Link href="/c/product" data-umami-event="footer-fees">
+            {en ? "Fees" : "کارمزدها"}
+          </Link>
         </div>
 
         <div className="site-footer__col">
           <h2>{en ? "More" : "بیشتر"}</h2>
-          <Link href="/">فارسی</Link>
-          <Link href="/en" className="lat">
+          <Link href="/" data-umami-event="lang-switch" data-umami-event-to="fa">
+            فارسی
+          </Link>
+          <Link href="/en" className="lat" data-umami-event="lang-switch" data-umami-event-to="en">
             English
           </Link>
-          <Link href="/feed.xml" className="lat">
+          <Link href="/feed.xml" className="lat" data-umami-event="rss-click">
             RSS
           </Link>
         </div>

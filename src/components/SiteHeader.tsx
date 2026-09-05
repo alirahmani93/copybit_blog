@@ -37,6 +37,8 @@ export default function SiteHeader({ lang = "fa" }: { lang?: "fa" | "en" }) {
                 key={p.slug}
                 href={`/c/${p.slug}`}
                 aria-current={pathname === `/c/${p.slug}` ? "page" : undefined}
+                data-umami-event="nav-pillar"
+                data-umami-event-pillar={p.slug}
               >
                 {p.name}
               </Link>
@@ -49,11 +51,18 @@ export default function SiteHeader({ lang = "fa" }: { lang?: "fa" | "en" }) {
             href="/search"
             className="icon-btn icon-btn--search"
             aria-label={en ? "Search" : "جستجو"}
+            data-umami-event="nav-search"
           >
             <SearchIcon />
           </Link>
 
-          <Link href={en ? "/" : "/en"} className="lang-btn" hrefLang={en ? "fa" : "en"}>
+          <Link
+            href={en ? "/" : "/en"}
+            className="lang-btn"
+            hrefLang={en ? "fa" : "en"}
+            data-umami-event="lang-switch"
+            data-umami-event-to={en ? "fa" : "en"}
+          >
             <GlobeIcon />
             <span className={en ? undefined : "lat"}>{en ? "FA" : "EN"}</span>
           </Link>
@@ -66,6 +75,8 @@ export default function SiteHeader({ lang = "fa" }: { lang?: "fa" | "en" }) {
             target="_blank"
             rel="noopener noreferrer"
             data-umami-event="cta-header"
+            data-umami-event-placement="header"
+            data-umami-event-lang={lang}
           >
             <span>{en ? site.ctaLabelEn : site.ctaLabel}</span>
             <ArrowIcon className="arrow-rtl" />
@@ -91,16 +102,26 @@ export default function SiteHeader({ lang = "fa" }: { lang?: "fa" | "en" }) {
         aria-label={en ? "Sections" : "بخش‌ها"}
       >
         {pillars.map((p) => (
-          <Link key={p.slug} href={`/c/${p.slug}`}>
+          <Link
+            key={p.slug}
+            href={`/c/${p.slug}`}
+            data-umami-event="nav-pillar"
+            data-umami-event-pillar={p.slug}
+            data-umami-event-placement="mobile"
+          >
             {p.name}
           </Link>
         ))}
-        <Link href="/search">{en ? "Search" : "جستجو"}</Link>
+        <Link href="/search" data-umami-event="nav-search" data-umami-event-placement="mobile">
+          {en ? "Search" : "جستجو"}
+        </Link>
         <a
           href={site.appUrl}
           target="_blank"
           rel="noopener noreferrer"
           data-umami-event="cta-mobile-nav"
+          data-umami-event-placement="mobile-nav"
+          data-umami-event-lang={lang}
         >
           {en ? site.ctaLabelEn : site.ctaLabel}
         </a>

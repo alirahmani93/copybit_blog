@@ -4,12 +4,21 @@ import { useEffect, useState } from "react";
 import { ChevronDownIcon, ListIcon } from "./Icons";
 import { formatNumber } from "@/lib/dates";
 import type { TocEntry } from "@/lib/markdown";
+import { track } from "@/lib/analytics";
 
 /**
  * "در این مطلب" — sticky on desktop, a collapsed summary bar under 1024px.
  * The active entry follows the heading nearest the top of the viewport.
  */
-export default function Toc({ items, lang = "fa" }: { items: TocEntry[]; lang?: "fa" | "en" }) {
+export default function Toc({
+  items,
+  lang = "fa",
+  slug,
+}: {
+  items: TocEntry[];
+  lang?: "fa" | "en";
+  slug?: string;
+}) {
   const [active, setActive] = useState<string>(items[0]?.id ?? "");
   const en = lang === "en";
 
@@ -40,7 +49,11 @@ export default function Toc({ items, lang = "fa" }: { items: TocEntry[]; lang?: 
     <ol className="toc__list">
       {items.map((item) => (
         <li key={item.id} data-depth={item.depth}>
-          <a href={`#${item.id}`} data-active={active === item.id}>
+          <a
+            href={`#${item.id}`}
+            data-active={active === item.id}
+            onClick={() => track("toc-click", { section: item.text, slug })}
+          >
             {item.text}
           </a>
         </li>

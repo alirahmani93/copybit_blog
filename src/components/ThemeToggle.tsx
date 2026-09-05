@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MoonIcon, SunIcon } from "./Icons";
+import { track } from "@/lib/analytics";
 
 type Theme = "light" | "dark";
 
@@ -27,6 +28,7 @@ export default function ThemeToggle({ label }: { label: string }) {
       /* private mode — the choice just does not persist */
     }
     setTheme(next);
+    track("theme-toggle", { theme: next });
   }
 
   return (

@@ -15,12 +15,24 @@ export default function FeaturedPost({ post, label }: { post: Post; label: strin
       <article className="featured" dir={en ? "ltr" : undefined}>
         <div className="featured__body">
           {post.pillar && (
-            <Link href={post.pillar.href} className="badge">
+            <Link
+              href={post.pillar.href}
+              className="badge"
+              data-umami-event="badge-click"
+              data-umami-event-pillar={post.pillar.name}
+            >
               {post.pillar.name}
             </Link>
           )}
           <h2 className="featured__title" style={en ? { lineHeight: 1.2, letterSpacing: "-0.025em" } : undefined}>
-            <Link href={`/${post.slug}`}>{post.title}</Link>
+            <Link
+              href={`/${post.slug}`}
+              data-umami-event="post-click"
+              data-umami-event-slug={post.slug}
+              data-umami-event-place="featured"
+            >
+              {post.title}
+            </Link>
           </h2>
           <p className="featured__dek" style={en ? { lineHeight: 1.65, maxWidth: "46ch" } : undefined}>
             {post.description}
@@ -32,7 +44,15 @@ export default function FeaturedPost({ post, label }: { post: Post; label: strin
             lang={post.lang}
           />
         </div>
-        <Link href={`/${post.slug}`} className="featured__art" tabIndex={-1} aria-hidden>
+        <Link
+          href={`/${post.slug}`}
+          className="featured__art"
+          tabIndex={-1}
+          aria-hidden
+          data-umami-event="post-click"
+          data-umami-event-slug={post.slug}
+          data-umami-event-place="featured"
+        >
           {post.cover ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img

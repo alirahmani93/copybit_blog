@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CoverArt from "./CoverArt";
 import { CloseIcon, SearchIcon } from "./Icons";
 import { formatDate, postCountLabel, readingTimeShort } from "@/lib/dates";
 import type { SearchDoc } from "@/lib/posts";
+import { track } from "@/lib/analytics";
 
 /**
  * Client-side search over a prebuilt index. The corpus is small enough that a
@@ -35,6 +36,19 @@ export default function SearchView({ docs, initialQuery = "" }: { docs: SearchDo
       .map((r) => r.doc);
   }, [docs, query]);
 
+  const q = query.trim().toLowerCase();
+  const hits = results.length;
+
+  // Debounced so a typed word reports once, not once per keystroke. A query
+  // with no hits is a content gap, so it gets its own event name.
+  useEffect(() => {
+    if (q.length < 2) return;
+    const timer = setTimeout(() => {
+      track(hits === 0 ? "search-no-results" : "search", { query: q, results: hits });
+    }, 900);
+    return () => clearTimeout(timer);
+  }, [q, hits]);
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
       <div className="search-field">
@@ -50,7 +64,12 @@ export default function SearchView({ docs, initialQuery = "" }: { docs: SearchDo
           autoFocus
         />
         {query && (
-          <button type="button" className="search-field__clear" onClick={() => setQuery("")}>
+          <button
+            type="button"
+            className="search-field__clear"
+            onClick={() => setQuery("")}
+            data-umami-event="search-clear"
+          >
             پاک کردن
             <CloseIcon />
           </button>
@@ -72,9 +91,15 @@ export default function SearchView({ docs, initialQuery = "" }: { docs: SearchDo
         </div>
       ) : (
         <div className="rows">
-          {results.map((doc) => (
+          {results.map((doc, i) => (
             <article className="post-row" key={doc.slug} dir={doc.lang === "en" ? "ltr" : undefined}>
-              <Link href={`/${doc.slug}`} className="post-row__art" tabIndex={-1} aria-hidden>
+              <Link
+                href={`/${doc.slug}`}
+                className="post-row__art"
+                tabIndex={-1}
+                aria-hidden
+                onClick={() => track("search-result-click", { slug: doc.slug, query: q, position: i + 1 })}
+              >
                 <CoverArt kind={doc.art} height={120} />
               </Link>
               <div className="post-row__body">
@@ -85,7 +110,12 @@ export default function SearchView({ docs, initialQuery = "" }: { docs: SearchDo
                   </span>
                 </div>
                 <h2 className="post-row__title">
-                  <Link href={`/${doc.slug}`}>{doc.title}</Link>
+                  <Link
+                    href={`/${doc.slug}`}
+                    onClick={() => track("search-result-click", { slug: doc.slug, query: q, position: i + 1 })}
+                  >
+                    {doc.title}
+                  </Link>
                 </h2>
                 <p className="post-row__dek">{doc.description}</p>
               </div>

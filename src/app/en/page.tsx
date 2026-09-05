@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   description: site.descriptionEn,
   alternates: { canonical: "/en", languages: { fa: "/", en: "/en" } },
   openGraph: { type: "website", title: `${site.name} Blog`, description: site.descriptionEn, url: `${site.url}/en`, locale: "en_US" },
+  other: { "x-lang": "en" },
 };
 
 export default function EnglishHome() {
@@ -38,7 +39,7 @@ export default function EnglishHome() {
           {rest.length > 0 ? (
             <div className="grid-3">
               {rest.map((post) => (
-                <PostCard key={post.slug} post={post} />
+                <PostCard key={post.slug} post={post} place="home" />
               ))}
             </div>
           ) : (

@@ -70,6 +70,11 @@ export async function generateMetadata({
         ...(post.cover ? { images: [post.cover] } : {}),
         locale: post.lang === "en" ? "en_US" : site.locale,
       },
+      // Read by the Umami beforeSend hook, which stamps them onto every event.
+      other: {
+        "x-lang": post.lang,
+        ...(post.pillar ? { "x-pillar": post.pillar.name } : {}),
+      },
     };
   }
 
@@ -79,6 +84,7 @@ export async function generateMetadata({
       title: page.title,
       description: page.description,
       alternates: { canonical: `/${page.slug}` },
+      other: { "x-lang": page.lang },
     };
   }
   return {};
@@ -134,7 +140,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <>
-      <ReadingProgress />
+      <ReadingProgress slug={post.slug} />
       <SiteHeader lang={post.lang} />
 
       <main>
@@ -170,10 +176,19 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={en ? "Share" : "هم‌رسانی"}
+                  data-umami-event="share"
+                  data-umami-event-network="telegram"
+                  data-umami-event-slug={post.slug}
                 >
                   <ShareIcon />
                 </a>
-                <a className="icon-btn" href={`#${post.toc[0]?.id ?? ""}`} aria-label={en ? "Permalink" : "پیوند"}>
+                <a
+                  className="icon-btn"
+                  href={`#${post.toc[0]?.id ?? ""}`}
+                  aria-label={en ? "Permalink" : "پیوند"}
+                  data-umami-event="permalink"
+                  data-umami-event-slug={post.slug}
+                >
                   <LinkIcon />
                 </a>
               </div>
@@ -197,7 +212,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
           <div className="article-body">
             <aside>
-              <Toc items={post.toc} lang={post.lang} />
+              <Toc items={post.toc} lang={post.lang} slug={post.slug} />
             </aside>
 
             <div className="article-body__main">
@@ -213,12 +228,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   dek={post.cta.dek}
                   label={post.cta.label ?? (en ? "Get started" : "شروع کنید")}
                   href={post.cta.href}
+                  slug={post.slug}
                 />
               )}
 
               {post.faq.length > 0 && (
                 <div className="prose" data-lang={post.lang}>
-                  <Faq items={post.faq} heading={en ? "FAQ" : "پرسش‌های متداول"} />
+                  <Faq items={post.faq} heading={en ? "FAQ" : "پرسش‌های متداول"} slug={post.slug} />
                 </div>
               )}
 
@@ -237,7 +253,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               {post.labels.length > 0 && (
                 <div className="tag-list">
                   {post.labels.map((label) => (
-                    <Link key={label} href={`/search?q=${encodeURIComponent(label)}`} className="tag">
+                    <Link
+                      key={label}
+                      href={`/search?q=${encodeURIComponent(label)}`}
+                      className="tag"
+                      data-umami-event="tag-click"
+                      data-umami-event-tag={label}
+                      data-umami-event-slug={post.slug}
+                    >
                       {label}
                     </Link>
                   ))}
@@ -249,7 +272,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
         {next && (
           <div className="wrap" style={{ paddingTop: 32 }}>
-            <Link href={`/${next.slug}`} className="card next-post" style={{ color: "inherit" }}>
+            <Link
+              href={`/${next.slug}`}
+              className="card next-post"
+              style={{ color: "inherit" }}
+              data-umami-event="post-click"
+              data-umami-event-slug={next.slug}
+              data-umami-event-place="next-post"
+              data-umami-event-from={post.slug}
+            >
               <span className="next-post__art">
                 <CoverArt kind={next.art} height={56} />
               </span>
@@ -271,7 +302,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             </div>
             <div className="grid-3">
               {related.map((p) => (
-                <PostCard key={p.slug} post={p} />
+                <PostCard key={p.slug} post={p} place="related" />
               ))}
             </div>
           </section>

@@ -3,13 +3,22 @@
 import { useState } from "react";
 import { ChevronDownIcon } from "./Icons";
 import type { Faq as FaqItem } from "@/lib/posts";
+import { track } from "@/lib/analytics";
 
 /**
  * The FAQ accordion. The first entry starts open — it is the one AI search and
  * featured snippets are most likely to lift. FAQPage JSON-LD is emitted by the
  * post page itself, not here, so the markup and the schema cannot drift apart.
  */
-export default function Faq({ items, heading }: { items: FaqItem[]; heading: string }) {
+export default function Faq({
+  items,
+  heading,
+  slug,
+}: {
+  items: FaqItem[];
+  heading: string;
+  slug?: string;
+}) {
   const [open, setOpen] = useState<number | null>(0);
   if (items.length === 0) return null;
 
@@ -27,7 +36,10 @@ export default function Faq({ items, heading }: { items: FaqItem[]; heading: str
                   className="faq__q"
                   aria-expanded={isOpen}
                   aria-controls={`faq-a-${i}`}
-                  onClick={() => setOpen(isOpen ? null : i)}
+                  onClick={() => {
+                    setOpen(isOpen ? null : i);
+                    if (!isOpen) track("faq-open", { question: item.q, slug, position: i + 1 });
+                  }}
                 >
                   <span>{item.q}</span>
                   <ChevronDownIcon />
