@@ -132,6 +132,16 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const url = `${site.url}/${post.slug}`;
   const hasOwnDisclaimer = post.html.includes('class="disclaimer"');
 
+  // Inline "keep reading" — surface a related post mid-article. ~3 of 4 readers
+  // never reach the related block at the very bottom, so we split the body before
+  // the 3rd H2 and drop one related link there. Only for posts long enough to
+  // have the sections to spare.
+  const inlineRelated = related[0];
+  const h2Offsets = [...post.html.matchAll(/<h2\b/g)].map((m) => m.index ?? -1);
+  const splitAt = h2Offsets.length >= 4 ? h2Offsets[2] : -1;
+  const bodyHead = splitAt > 0 ? post.html.slice(0, splitAt) : post.html;
+  const bodyTail = splitAt > 0 ? post.html.slice(splitAt) : "";
+
   const crumbs = [
     { name: en ? site.kickerEn : site.kicker, href: en ? "/en" : "/" },
     ...(post.pillar ? [{ name: post.pillar.name, href: post.pillar.href }] : []),
@@ -202,7 +212,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 <img
                   src={post.cover}
                   alt={post.coverAlt ?? ""}
-                  style={{ display: "block", width: "100%", height: "auto" }}
+                  className="article-cover__img"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               ) : (
                 <CoverArt kind={post.art} height={300} />
@@ -219,8 +231,32 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <div
                 className="prose"
                 data-lang={post.lang}
-                dangerouslySetInnerHTML={{ __html: post.html }}
+                dangerouslySetInnerHTML={{ __html: bodyHead }}
               />
+              {bodyTail && inlineRelated && (
+                <aside className="inline-read-more">
+                  <span className="inline-read-more__label">
+                    {en ? "Keep reading" : "بیشتر بخوانید"}
+                  </span>
+                  <Link
+                    href={`/${inlineRelated.slug}`}
+                    className="inline-read-more__link"
+                    data-umami-event="post-click"
+                    data-umami-event-slug={inlineRelated.slug}
+                    data-umami-event-place="inline"
+                    data-umami-event-from={post.slug}
+                  >
+                    {inlineRelated.title}
+                  </Link>
+                </aside>
+              )}
+              {bodyTail && (
+                <div
+                  className="prose"
+                  data-lang={post.lang}
+                  dangerouslySetInnerHTML={{ __html: bodyTail }}
+                />
+              )}
 
               {post.cta && (
                 <Cta

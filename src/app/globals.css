@@ -782,6 +782,14 @@ svg {
   background: var(--brand-dim);
   border: 1px solid var(--border);
 }
+/* Supplied cover images land in a fixed hero band — a consistent shape across
+   posts, and no layout shift while the image loads. */
+.article-cover__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
 
 .article-body {
   max-width: var(--wrap);
@@ -954,6 +962,46 @@ svg {
   padding: 0 22px;
   font-size: 15px;
   flex: none;
+}
+
+/* ── Inline "keep reading" — mid-article related link ──────────────────── */
+
+.inline-read-more {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 8px 0;
+  padding: 16px 18px;
+  background: var(--brand-dim);
+  border: 1px solid var(--brand-ring);
+  border-radius: var(--radius-lg);
+}
+.inline-read-more__label {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 0.03em;
+}
+.inline-read-more__link {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--brand-ink);
+  line-height: 1.7;
+  text-decoration: none;
+}
+.inline-read-more__link::after {
+  content: "←";
+  margin-inline-start: 6px;
+  color: var(--brand);
+  font-weight: 700;
+}
+[dir="ltr"] .inline-read-more__link::after {
+  content: "→";
+}
+.inline-read-more__link:hover {
+  color: var(--brand);
 }
 
 /* ── Tags & disclaimer ─────────────────────────────────────────────────── */
@@ -1166,6 +1214,7 @@ svg {
 .prose blockquote {
   background: var(--brand-dim);
   border-radius: var(--radius-xl);
+  border-inline-start: 3px solid var(--brand);
   padding: 24px 26px;
   display: flex;
   flex-direction: column;
@@ -1501,11 +1550,11 @@ svg {
 
   .prose {
     gap: 20px;
-    font-size: 16.5px;
-    line-height: 2.15;
+    font-size: 17.5px;
+    line-height: 2.2;
   }
   .prose p {
-    font-size: 16.5px;
+    font-size: 17.5px;
     line-height: 2.15;
   }
   .prose h2 {
