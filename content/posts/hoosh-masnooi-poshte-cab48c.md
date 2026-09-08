@@ -11,6 +11,8 @@ labels:
   - "پرپ سهام"
   - "دیتاسنتر"
 art: bars
+cover: /images/cover-hoosh-masnooi-poshte-cab48c.webp
+coverAlt: "چهار لایهٔ روی‌هم به شکل هرم با شبکهٔ عصبی که از میان آن‌ها می‌گذرد"
 featured: false
 unlisted: false
 draft: false

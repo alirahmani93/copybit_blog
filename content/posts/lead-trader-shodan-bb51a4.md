@@ -11,6 +11,8 @@ labels:
   - "تقسیم کارمزد"
   - "دراودان"
 art: cards
+cover: /images/cover-lead-trader-shodan-bb51a4.webp
+coverAlt: "یک گره روشن که سیگنال پخش می‌کند و گره‌های دنبال‌کننده پشت آن قرار دارند"
 featured: false
 unlisted: false
 draft: false

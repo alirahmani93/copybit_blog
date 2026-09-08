@@ -11,6 +11,8 @@ labels:
   - "دلتا نوترال"
   - "فاندینگ ریت"
 art: cards
+cover: /images/cover-moamele-jofti-a4e1b7.webp
+coverAlt: "دو دارایی هم‌بسته که روی دو کفهٔ یک ترازو متعادل شده‌اند"
 featured: false
 unlisted: false
 draft: false

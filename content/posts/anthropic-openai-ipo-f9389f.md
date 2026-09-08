@@ -11,6 +11,8 @@ labels:
   - "عرضه اولیه"
   - "هوش مصنوعی"
 art: bars
+cover: /images/cover-anthropic-openai-ipo-f9389f.webp
+coverAlt: "دو ستون نور روبه‌روی هم و آستانه‌ای روشن پیش از عرضه، با افق بورس در پس‌زمینه"
 featured: false
 unlisted: false
 draft: false

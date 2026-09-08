@@ -11,6 +11,8 @@ labels:
   - "لیکوئید شدن"
   - "نقدینگی"
 art: bars
+cover: /images/cover-heatmap-liquidation-a3f1d7.webp
+coverAlt: "نوار هیت‌مپ روی شبکه قیمت با خوشه‌های داغ لیکوئیدیشن"
 featured: false
 unlisted: false
 draft: false

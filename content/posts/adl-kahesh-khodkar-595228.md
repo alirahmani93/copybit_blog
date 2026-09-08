@@ -11,6 +11,8 @@ labels:
   - "قیمت ورشکستگی"
   - "لیکوئید شدن"
 art: line-down
+cover: /images/cover-adl-kahesh-khodkar-595228.webp
+coverAlt: "بازوی مکانیکی که یک گره پوزیشن روشن را از زنجیره جدا می‌کند"
 featured: false
 unlisted: false
 draft: false

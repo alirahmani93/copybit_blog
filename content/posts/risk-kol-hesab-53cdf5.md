@@ -11,6 +11,8 @@ labels:
   - "دراودان"
   - "سایز پوزیشن"
 art: line-down
+cover: /images/cover-risk-kol-hesab-53cdf5.webp
+coverAlt: "چند گره پوزیشن با اندازه‌های مختلف درون یک حباب مرزی شفاف"
 featured: false
 unlisted: false
 draft: false

@@ -11,6 +11,8 @@ labels:
   - "اسلیپیج"
   - "قیمت مارک"
 art: cards
+cover: /images/cover-stop-loss-ejra-nashod-e3b1a7.webp
+coverAlt: "جریان ذرات که از کنار دروازه‌های محافظ عبور می‌کند و رد می‌شود"
 featured: false
 unlisted: false
 draft: false

@@ -11,6 +11,8 @@ labels:
   - "هانی پات"
   - "سولانا"
 art: line-down
+cover: /images/cover-token-scam-tashkhis-b7d219.webp
+coverAlt: "یک توکن براق با هستهٔ توخالی و ترک‌خورده و هالهٔ هشدار"
 featured: false
 unlisted: false
 draft: false

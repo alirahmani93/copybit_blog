@@ -11,6 +11,8 @@ labels:
   - "بلک‌راک"
   - "استیبل‌کوین سودده"
 art: line-up
+cover: /images/cover-rwa-tokenize-b8e4d2.webp
+coverAlt: "یک شمش دارایی که در حال تبدیل شدن به مکعب‌های توکنی روی شبکه بلاک‌چین است"
 featured: false
 unlisted: false
 draft: false

@@ -11,6 +11,8 @@ labels:
   - "سلطه مالی"
   - "اوراق خزانه"
 art: bars
+cover: /images/cover-japan-fed-749416.webp
+coverAlt: "دروازه ژاپنی و ستون و گنبد مالی غربی که با نخی از نور به هم وصل شده‌اند"
 featured: false
 unlisted: false
 draft: false

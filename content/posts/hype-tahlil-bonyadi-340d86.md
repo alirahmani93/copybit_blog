@@ -10,6 +10,8 @@ labels:
   - "HYPE"
   - "تحلیل بنیادی"
 art: bars
+cover: /images/cover-hype-tahlil-bonyadi-340d86.webp
+coverAlt: "ذره‌بینی که مکانیزم درونی یک دارایی را بررسی می‌کند"
 featured: true
 cta:
   title: "هایپ را روی کپی‌بیت معامله کنید"
