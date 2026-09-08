@@ -12,7 +12,7 @@ labels:
 art: bars
 cover: /images/cover-hype-tahlil-bonyadi-340d86.webp
 coverAlt: "ذره‌بینی که مکانیزم درونی یک دارایی را بررسی می‌کند"
-featured: true
+featured: false
 cta:
   title: "هایپ را روی کپی‌بیت معامله کنید"
   dek: "فیوچرز HYPE، BTC و ETH تا اهرم ۲۰× — یا مستقیم بهترین تریدرها را کپی کنید."

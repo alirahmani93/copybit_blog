@@ -13,7 +13,7 @@ labels:
 art: bars
 cover: /images/cover-anthropic-openai-ipo-f9389f.webp
 coverAlt: "دو ستون نور روبه‌روی هم و آستانه‌ای روشن پیش از عرضه، با افق بورس در پس‌زمینه"
-featured: false
+featured: true
 unlisted: false
 draft: false
 cta:
