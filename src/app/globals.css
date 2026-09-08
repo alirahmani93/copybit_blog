@@ -964,6 +964,49 @@ svg {
   flex: none;
 }
 
+/* ── Figure tap-to-zoom ────────────────────────────────────────────────── */
+
+.prose img {
+  cursor: zoom-in;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(6, 7, 10, 0.9);
+  overflow: auto;
+  cursor: zoom-out;
+  padding: 24px;
+  overscroll-behavior: contain;
+}
+.lightbox__img {
+  display: block;
+  margin: auto;
+  /* On a phone the image is wider than the viewport, so labels stay legible and
+     the reader pans; on desktop it caps at full detail. */
+  width: min(1200px, 250vw);
+  max-width: none;
+  height: auto;
+  border-radius: 10px;
+}
+.lightbox__close {
+  position: fixed;
+  top: 12px;
+  inset-inline-end: 16px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
 /* ── Inline "keep reading" — mid-article related link ──────────────────── */
 
 .inline-read-more {

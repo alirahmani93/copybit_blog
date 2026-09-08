@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ReadingProgress from "@/components/ReadingProgress";
+import Lightbox from "@/components/Lightbox";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Byline from "@/components/Byline";
 import CoverArt from "@/components/CoverArt";
@@ -151,6 +152,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <>
       <ReadingProgress slug={post.slug} />
+      <Lightbox />
       <SiteHeader lang={post.lang} />
 
       <main>
