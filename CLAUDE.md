@@ -255,9 +255,27 @@ understanding, then use the common term throughout.
 | پوزیشن | موقعیت معاملاتی |
 | لیکوئید شدن | — |
 | مارجین · فاندینگ ریت | — |
-| اسپات · فیوچرز · پرپچوال | — |
+| اسپات · فیوچرز · فیوچرز دائمی (پرپچوال) | پرپ |
 | کندل · تایم فریم | — |
 | ولت / کیف پول | — |
+
+**Punctuation and diacritics.** No em dash (—) or en dash anywhere in Persian
+text: an aside is set off with «،», «؛», «:» or parentheses. No written ezafe
+kasra or any other اعراب — «قیمتِ بازار» is wrong, «قیمت بازار» is right; the
+reader infers the ezafe. The «هٔ» in «هزینهٔ» is spelling, not a diacritic, and
+stays; so does the tanween on adverbs («رسماً», «تقریباً»). No «~» before a
+number: write «حدود ۱٫۹ تریلیون».
+
+**One register.** Address the reader as «شما» and keep it consistent through the
+whole piece, FAQ included. Do not reach for colloquial تو/امری phrasing
+(«بدان», «بزن», «ریسکش با خودت», «کش بیاید») to sound friendly — it reads as
+forced. Direct, plain written Persian *is* the friendly register.
+
+**Define a term before leaning on it.** «آخرین دور خصوصی» means nothing to a
+reader; write «آخرین دور جذب سرمایه» and say once what it is. Prefer the full
+loanword over clipped slang: «فیوچرز» / «فیوچرز دائمی (پرپچوال)», never «پرپ».
+Transliterate names consistently (سربراس، کورویو، سیرکل) and give the Latin
+form once in parentheses.
 
 Brand name is **کپی‌بیت** (not کوپی‌بیت).
 
