@@ -8,6 +8,10 @@ import Script from "next/script";
  * override every value; setting NEXT_PUBLIC_UMAMI_WEBSITE_ID to an empty
  * string is not enough to disable it, use NEXT_PUBLIC_UMAMI_DISABLED=1.
  *
+ * `recorder.js` is the session-replay/heatmap tracker. It reuses the same
+ * website id and is disabled by NEXT_PUBLIC_UMAMI_DISABLED, or on its own with
+ * NEXT_PUBLIC_UMAMI_RECORDER_DISABLED=1.
+ *
  * Umami hooks the History API itself, so App Router client navigations are
  * counted as pageviews with no extra wiring.
  *
@@ -35,6 +39,9 @@ export default function Analytics() {
   const src = process.env.NEXT_PUBLIC_UMAMI_SRC || "https://stats.copybit.org/script.js";
   const domains = process.env.NEXT_PUBLIC_UMAMI_DOMAINS || "blog.copybit.org";
   const tag = process.env.NEXT_PUBLIC_UMAMI_TAG;
+  const recorderSrc =
+    process.env.NEXT_PUBLIC_UMAMI_RECORDER_SRC || "https://stats.copybit.org/recorder.js";
+  const recorder = !process.env.NEXT_PUBLIC_UMAMI_RECORDER_DISABLED;
 
   return (
     <>
@@ -49,6 +56,15 @@ export default function Analytics() {
         strategy="afterInteractive"
         defer
       />
+      {recorder && (
+        <Script
+          src={recorderSrc}
+          data-website-id={websiteId}
+          data-domains={domains}
+          strategy="afterInteractive"
+          defer
+        />
+      )}
     </>
   );
 }
