@@ -11,6 +11,8 @@ labels:
   - "فدرال رزرو"
   - "ستاپ معاملاتی"
 art: line-up
+cover: /images/cover-naft-se-raghami-05775c.webp
+coverAlt: "بشکهٔ نفت که مانند موشک به بالا پرتاب می‌شود، با عنوان «نفت سه‌رقمی شد»"
 featured: false
 unlisted: false
 draft: false
