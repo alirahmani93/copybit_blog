@@ -225,6 +225,16 @@ Never hype, never "financial freedom" language, never urgency.
 
 - **No price predictions.** Never «بیت کوین به X می‌رسد» or any target price.
 - **No buy, sell or entry recommendations.** Explain the mechanism; the reader decides.
+  - **Exception (policy set 2026-09-14): the analysis lane may carry one explicit
+    swing setup.** A comment-keyword analysis article may include *our* setup,
+    derived from the fundamental view in that article: direction, entry zone,
+    invalidation level, targets, a horizon of at most two weeks, a leverage cap
+    (≤3x) and a risk cap (≤1–2% of the account), plus the news triggers that
+    override every level. It is framed as our setup and our reasoning, never as
+    a guarantee or an implied return; it shows the downside math at the stated
+    leverage; it keeps the educational disclaimer. Such an article opens with
+    «این بار: تحلیل + ستاپ» so the reader knows the lane; reels keep the
+    «تحلیل، نه سیگنال» tagline. Everything else in this list still applies.
 - **No guaranteed or implied returns.** Never suggest copy trading is passive income or low risk.
 - On copy trading, state plainly that copiers can lose money, that past performance
   does not predict future results, and that a lead trader's incentives are not
