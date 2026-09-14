@@ -163,6 +163,13 @@ Subject: an abstract asset-form opened into transparent cross-section layers,
 revealing an inner glowing mechanism of revenue and flow, a fundamental x-ray.
 Secondary accent: violet.
 
+**naft-se-raghami-05775c** — «نفت سه‌رقمی شد: چرا، و تا کجا؟»
+Subject: a dark sculptural terrain with a pool of black oil and two glowing
+channels leading away from it; the first channel sealed by a heavy barred gate,
+the second a long pipeline on trestles with a severed, faintly sparking break;
+a single amber trail of light rising from the pool. Secondary accent: amber,
+with one red highlight at the break.
+
 **copper-tahlil-c7a2c6** — «تحلیل کامل مس»
 Subject: gleaming abstract copper-metallic ingots and industrial supply-demand
 lattice forms on a dark editorial ground, warm metal against cool indigo, a
