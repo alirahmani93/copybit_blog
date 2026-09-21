@@ -11,6 +11,8 @@ labels:
   - "صندوق‌های بیت‌کوین"
   - "ستاپ معاملاتی"
 art: line-up
+cover: /images/cover-bitcoin-84k-63bbf7.webp
+coverAlt: "بالون هوای گرمی که با طناب به یک وزنه بسته شده، با عنوان «نرخ رفت بالا، بیت‌کوین بالاتر» و دو سطح ۸۴ و ۷۸ هزار دلار"
 featured: false
 unlisted: false
 draft: false
