@@ -6,6 +6,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ReadingProgress from "@/components/ReadingProgress";
 import Lightbox from "@/components/Lightbox";
+import ProseWithWidgets from "@/components/ProseWithWidgets";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Byline from "@/components/Byline";
 import CoverArt from "@/components/CoverArt";
@@ -230,11 +231,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             </aside>
 
             <div className="article-body__main">
-              <div
-                className="prose"
-                data-lang={post.lang}
-                dangerouslySetInnerHTML={{ __html: bodyHead }}
-              />
+              <ProseWithWidgets html={bodyHead} lang={post.lang} />
               {bodyTail && inlineRelated && (
                 <aside className="inline-read-more">
                   <span className="inline-read-more__label">
@@ -252,13 +249,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   </Link>
                 </aside>
               )}
-              {bodyTail && (
-                <div
-                  className="prose"
-                  data-lang={post.lang}
-                  dangerouslySetInnerHTML={{ __html: bodyTail }}
-                />
-              )}
+              {bodyTail && <ProseWithWidgets html={bodyTail} lang={post.lang} />}
 
               {post.cta && (
                 <Cta
