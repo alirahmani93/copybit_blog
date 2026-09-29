@@ -32,7 +32,7 @@ export async function generateMetadata({
     alternates: { canonical: `/c/${pillar.slug}` },
     openGraph: {
       type: "website",
-      title: `${pillar.name} — ${site.title}`,
+      title: `${pillar.name} | ${site.title}`,
       description: pillar.blurb,
       url: `${site.url}/c/${pillar.slug}`,
     },
