@@ -199,6 +199,7 @@ it in the PR description.
 | Fee split | Of that 7 bps: 50% to the signal provider, 40% to CopyBit, 10% to the referrer |
 | Copy trading | Traders share positions live; those copied earn from their copiers' fees |
 | Deposits | Built-in bridge; accepts USDT, USDC and each chain's native token, from BSC, Polygon, Arbitrum and Base |
+| Custody | Non-custodial: funds stay in the user's own Hyperliquid account, which only their wallet signature controls. This holds for copy trading too; copying a trader does not move assets out of the copier's account. (Owner-confirmed 2026-10-07) |
 
 The 7 bps applies to every trade, copied or not. Never state or imply that trading
 on your own costs less, and never mention custom or negotiated rates for any
